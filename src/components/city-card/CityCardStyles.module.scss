@@ -1,0 +1,16 @@
+.card {
+  width: 70rem;
+
+  & :global(.ant-card-head) {
+    padding: 1rem 2rem;
+    min-height: auto;
+    & :global(.ant-card-head-title) {
+      font-size: 2.2rem;
+    }
+  }
+
+  & :global(.ant-card-body) {
+    padding: 1rem 2rem;
+    min-height: auto;
+  }
+}

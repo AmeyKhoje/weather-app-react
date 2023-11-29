@@ -1,6 +1,7 @@
 import SearchBar from 'src/components/search-bar/SearchBar';
 import styles from './HomeStyles.module.scss';
 import { Typography } from 'antd';
+import CityCard from 'src/components/city-card/CityCard';
 
 const Home = () => {
   return (
@@ -10,6 +11,9 @@ const Home = () => {
           Weather App
         </Typography>
         <SearchBar />
+        <div className={`${styles['container-inner_list']}`}>
+          <CityCard />
+        </div>
       </div>
     </div>
   );

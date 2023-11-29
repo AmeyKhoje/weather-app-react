@@ -10,6 +10,9 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    &_list {
+      padding-top: 3rem;
+    }
   }
 }
 
