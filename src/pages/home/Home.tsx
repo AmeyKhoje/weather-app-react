@@ -1,6 +1,6 @@
 import SearchBar from 'src/components/search-bar/SearchBar';
 import styles from './HomeStyles.module.scss';
-import { Typography } from 'antd';
+import { Modal, Typography } from 'antd';
 import CityCard from 'src/components/city-card/CityCard';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -8,6 +8,7 @@ import LocationCard from 'src/components/location-card/LocationCard';
 
 const Home = () => {
   const [locations, setLocations] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(true);
   useEffect(() => {
     axios
       .get(
@@ -34,6 +35,10 @@ const Home = () => {
         console.log(error);
       });
   };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
   return (
     <div className={`${styles['container']}`}>
       <div className={`${styles['container-inner']}`}>
@@ -57,7 +62,20 @@ const Home = () => {
               Search your favorite location to get current weather insights
             </Typography>
           )}
-          <CityCard />
+          <Modal
+            open={isModalOpen}
+            classNames={{
+              content: styles['modal'],
+            }}
+            cancelButtonProps={{
+              style: {
+                display: 'none',
+              },
+            }}
+            onCancel={handleModalClose}
+          >
+            <CityCard />
+          </Modal>
         </div>
       </div>
     </div>

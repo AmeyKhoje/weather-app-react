@@ -21,3 +21,9 @@
   font-weight: 600;
   margin-bottom: 2rem;
 }
+
+.modal {
+  &:global(.ant-modal-content) {
+    padding: 8rem 2rem 2rem;
+  }
+}
