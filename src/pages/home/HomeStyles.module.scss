@@ -28,3 +28,37 @@
     padding: 8rem 2rem 2rem;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .container {
+    &-inner {
+      width: 90%;
+      margin: auto;
+    }
+  }
+
+  .main-title {
+    font-size: 8rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .container {
+    &-inner {
+      width: 100%;
+      // margin: auto;
+      padding: 0 5rem;
+      box-sizing: border-box;
+    }
+  }
+
+  .main-title {
+    font-size: 11rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .main-title {
+    font-size: 14rem;
+  }
+}

@@ -12,5 +12,69 @@
   & :global(.ant-card-body) {
     padding: 1rem 2rem;
     min-height: auto;
+
+    & :global(.card-content-text) {
+      font-size: 2rem;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    & :global(.ant-card-head) {
+      padding: 2rem 3.5rem;
+      min-height: auto;
+      & :global(.ant-card-head-title) {
+        font-size: 4rem;
+      }
+    }
+
+    & :global(.ant-card-body) {
+      padding: 2rem 4rem;
+      min-height: auto;
+      & :global(.card-content-text) {
+        font-size: 4rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .card {
+    & :global(.ant-card-head) {
+      padding: 4rem 6rem;
+      min-height: auto;
+      & :global(.ant-card-head-title) {
+        font-size: 6rem;
+      }
+    }
+
+    & :global(.ant-card-body) {
+      padding: 3.5rem 6rem;
+      min-height: auto;
+      & :global(.card-content-text) {
+        font-size: 5.5rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .card {
+    & :global(.ant-card-head) {
+      padding: 6rem 8rem;
+      min-height: auto;
+      & :global(.ant-card-head-title) {
+        font-size: 8rem;
+      }
+    }
+
+    & :global(.ant-card-body) {
+      padding: 6rem 8rem;
+      min-height: auto;
+      & :global(.card-content-text) {
+        font-size: 7rem;
+      }
+    }
   }
 }

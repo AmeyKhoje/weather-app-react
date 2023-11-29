@@ -17,3 +17,33 @@
     font-weight: 600;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .location-card {
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    &_text {
+      font-size: 4rem;
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .location-card {
+    padding: 4rem;
+    margin-bottom: 3rem;
+    &_text {
+      font-size: 6rem;
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .location-card {
+    padding: 6rem;
+    margin-bottom: 4rem;
+    &_text {
+      font-size: 8rem;
+    }
+  }
+}

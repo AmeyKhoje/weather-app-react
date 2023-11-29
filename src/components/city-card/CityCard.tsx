@@ -10,31 +10,45 @@ const CityCard = () => {
         <>
           <div>
             <div>
-              <Typography>Temperature: {state?.current?.temp}</Typography>
-            </div>
-            <div>
-              <Typography>
-                Sunrise: {new Date(state?.current?.sunrise).toDateString()}
+              <Typography className={'card-content-text'}>
+                <strong>Temperature:</strong> {state?.current?.temp}
               </Typography>
             </div>
             <div>
-              <Typography>
-                Sunset: {new Date(state?.current?.sunset).toDateString()}
+              <Typography className={'card-content-text'}>
+                <strong>Sunrise:</strong>{' '}
+                {new Date(state?.current?.sunrise).toString()}
               </Typography>
             </div>
             <div>
-              <Typography>Wind Speed: {state?.current?.wind_speed}</Typography>
+              <Typography className={'card-content-text'}>
+                <strong>Sunset:</strong>{' '}
+                {new Date(state?.current?.sunset).toString()}
+              </Typography>
             </div>
             <div>
-              <Typography>Humidity: {state?.current?.humidity}</Typography>
+              <Typography className={'card-content-text'}>
+                <strong>Wind Speed:</strong> {state?.current?.wind_speed}
+              </Typography>
             </div>
             <div>
-              <Typography>Clouds: {state?.current?.clouds}</Typography>
+              <Typography className={'card-content-text'}>
+                <strong>Humidity:</strong> {state?.current?.humidity}
+              </Typography>
+            </div>
+            <div>
+              <Typography className={'card-content-text'}>
+                <strong>Clouds:</strong> {state?.current?.clouds}
+              </Typography>
             </div>
           </div>
           <div>
-            <Typography>Lat: 100, Long: 90</Typography>
-            <Typography>Timezone: India/Kolkata</Typography>
+            <Typography className={'card-content-text'}>
+              <strong>Lat:</strong> 100, <strong>Long:</strong> 90
+            </Typography>
+            <Typography className={'card-content-text'}>
+              <strong>Timezone:</strong> India/Kolkata
+            </Typography>
           </div>
         </>
       ) : (
