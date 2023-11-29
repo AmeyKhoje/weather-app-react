@@ -12,7 +12,7 @@ const Home = () => {
   useEffect(() => {
     axios
       .get(
-        `https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=${process.env.WEATHER_API_KEY}`
+        `https://tile.openweathermap.org/map/precipitation_new/1/1/1.png?appid=${process.env.WEATHER_API_KEY}`
       )
       .then((res) => {
         console.log(res);
@@ -39,6 +39,19 @@ const Home = () => {
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
+
+  const handleLocationClick = (lat: number, lon: number) => {
+    axios
+      .get(
+        `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=hourly&appid=${process.env.WEATHER_API_KEY}`
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className={`${styles['container']}`}>
       <div className={`${styles['container-inner']}`}>
@@ -55,6 +68,7 @@ const Home = () => {
                 lon={location?.lon}
                 name={location?.name}
                 state={location?.state}
+                handleClick={handleLocationClick}
               />
             ))
           ) : (
