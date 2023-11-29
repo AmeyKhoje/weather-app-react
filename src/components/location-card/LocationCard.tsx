@@ -7,7 +7,7 @@ type SelfProps = {
   state: string;
   lat: number;
   lon: number;
-  handleClick: (lat: number, lon: number) => void;
+  handleClick: (lat: number, lon: number, name: string) => void;
 };
 
 const LocationCard = ({
@@ -19,7 +19,7 @@ const LocationCard = ({
   handleClick,
 }: SelfProps) => {
   const onClick = () => {
-    handleClick(lat, lon);
+    handleClick(lat, lon, `${name}, ${state}, ${country}`);
   };
   return (
     <Flex className={styles['location-card']} onClick={onClick}>

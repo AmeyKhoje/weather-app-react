@@ -1,6 +1,6 @@
 import SearchBar from 'src/components/search-bar/SearchBar';
 import styles from './HomeStyles.module.scss';
-import { Modal, Spin, Typography } from 'antd';
+import { Alert, Modal, Spin, Typography } from 'antd';
 import CityCard from 'src/components/city-card/CityCard';
 import { useState } from 'react';
 import axios from 'axios';
@@ -13,6 +13,8 @@ const Home = () => {
   const [locations, setLocations] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useCustomDispatch();
 
   // useEffect(() => {
@@ -38,9 +40,12 @@ const Home = () => {
       .then((res) => {
         setLocations(res.data);
         setIsLoading(false);
+        setShowError(false);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error?.response?.data);
+        setShowError(true);
+        setErrorMessage(error?.response?.data?.message);
         setIsLoading(false);
       });
   };
@@ -50,24 +55,36 @@ const Home = () => {
     dispatch(setData({}));
   };
 
-  const handleLocationClick = (lat: number, lon: number) => {
+  const handleLocationClick = (lat: number, lon: number, name: string) => {
     setIsLoading(true);
     axios
       .get(
         `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=hourly&appid=${process.env.WEATHER_API_KEY}`
       )
       .then((res) => {
-        dispatch(setData(res?.data));
+        dispatch(setData({ ...res?.data, name: name }));
         setIsModalOpen(true);
+        setShowError(false);
         setIsLoading(false);
       })
       .catch((error) => {
         setIsLoading(false);
+        setShowError(true);
+        setErrorMessage(error?.response?.data?.message);
       });
   };
   return (
     <div className={`${styles['container']}`}>
       {isLoading && <Spin fullscreen />}
+      {showError && (
+        <Alert
+          description={errorMessage}
+          message="Something went wrong!"
+          closable
+          type="error"
+          onClose={() => setShowError(false)}
+        />
+      )}
       <div className={`${styles['container-inner']}`}>
         <Typography className={`${styles['main-title']}`}>
           Weather App

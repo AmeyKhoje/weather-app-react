@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 const CityCard = () => {
   const state = useSelector((state: any) => state.weather?.data);
   return (
-    <Card title={'Thane'} rootClassName={styles['card']}>
+    <Card title={state?.name} rootClassName={styles['card']}>
       {state ? (
         <>
           <div>
