@@ -1,20 +1,12 @@
-import 'assets/styles/style.scss';
-import Banner from './components/sections/banner/Banner';
-import About from './components/sections/about/About';
-import WorkExperience from './components/sections/work-experience/WorkExperience';
-import Skills from './components/sections/skills/Skills';
-import { SKILLS } from './utils/constants';
-import Contact from './components/sections/contact/Contact';
+import { ConfigProvider } from 'antd';
+import Theme from './theme/Theme';
+import Home from './pages/home/Home';
 
 const App = () => {
   return (
-    <div>
-      <Banner />
-      <About />
-      <WorkExperience />
-      <Skills set={SKILLS} />
-      <Contact />
-    </div>
+    <ConfigProvider theme={Theme}>
+      <Home />
+    </ConfigProvider>
   );
 };
 

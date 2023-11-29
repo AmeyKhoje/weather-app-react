@@ -1,5 +1,5 @@
 {
-  "name": "generic-components",
+  "name": "wether-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "antd": "^5.11.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.55.0",

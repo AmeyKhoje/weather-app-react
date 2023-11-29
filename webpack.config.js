@@ -31,7 +31,7 @@ module.exports = ({ mode } = { mode: 'production' }) => {
           },
         },
         {
-          test: /\.s[ac]ss?$/i,
+          test: /\.(css|scss)?$/i,
           use: [
             {
               loader: 'style-loader',

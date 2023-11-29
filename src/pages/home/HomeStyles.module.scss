@@ -1,0 +1,20 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 5rem 5rem 0 5rem;
+  box-sizing: border-box;
+  &-inner {
+    width: 90rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.main-title {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}

@@ -1,0 +1,13 @@
+.container {
+  & :global(.input) {
+    padding: 1rem;
+    font-size: 2rem;
+    line-height: 1;
+  }
+  & :global(.button) {
+    padding: 1rem 2rem;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+  }
+}
