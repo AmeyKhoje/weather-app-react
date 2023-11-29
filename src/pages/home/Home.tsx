@@ -1,59 +1,72 @@
 import SearchBar from 'src/components/search-bar/SearchBar';
 import styles from './HomeStyles.module.scss';
-import { Modal, Typography } from 'antd';
+import { Modal, Spin, Typography } from 'antd';
 import CityCard from 'src/components/city-card/CityCard';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import LocationCard from 'src/components/location-card/LocationCard';
+import { useCustomDispatch } from 'src/store';
+import { setData } from 'src/store/slice/WeatherSlice';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
   const [locations, setLocations] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(true);
-  useEffect(() => {
-    axios
-      .get(
-        `https://tile.openweathermap.org/map/precipitation_new/1/1/1.png?appid=${process.env.WEATHER_API_KEY}`
-      )
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useCustomDispatch();
+
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       `https://tile.openweathermap.org/map/precipitation_new/1/1/1.png?appid=${process.env.WEATHER_API_KEY}`
+  //     )
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, []);
 
   const handleLocationSearch = (query: string) => {
+    setIsLoading(true);
     axios
       .get(
         `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5&appid=${process.env.WEATHER_API_KEY}`
       )
       .then((res) => {
         setLocations(res.data);
-        console.log(res.data);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);
+        setIsLoading(false);
       });
   };
 
   const handleModalClose = () => {
     setIsModalOpen(false);
+    dispatch(setData({}));
   };
 
   const handleLocationClick = (lat: number, lon: number) => {
+    setIsLoading(true);
     axios
       .get(
         `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=hourly&appid=${process.env.WEATHER_API_KEY}`
       )
       .then((res) => {
-        console.log(res);
+        dispatch(setData(res?.data));
+        setIsModalOpen(true);
+        setIsLoading(false);
       })
       .catch((error) => {
-        console.log(error);
+        setIsLoading(false);
       });
   };
   return (
     <div className={`${styles['container']}`}>
+      {isLoading && <Spin fullscreen />}
       <div className={`${styles['container-inner']}`}>
         <Typography className={`${styles['main-title']}`}>
           Weather App
@@ -87,6 +100,7 @@ const Home = () => {
               },
             }}
             onCancel={handleModalClose}
+            onOk={handleModalClose}
           >
             <CityCard />
           </Modal>
