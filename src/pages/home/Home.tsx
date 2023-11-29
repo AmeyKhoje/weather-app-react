@@ -6,7 +6,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import LocationCard from 'src/components/location-card/LocationCard';
 import { useCustomDispatch } from 'src/store';
-import { setData } from 'src/store/slice/WeatherSlice';
+import { setData, setSuggestions } from 'src/store/slice/WeatherSlice';
 import { useSelector } from 'react-redux';
 
 const Home = () => {
@@ -30,6 +30,7 @@ const Home = () => {
 
   const handleLocationSearch = (query: string) => {
     setIsLoading(true);
+    dispatch(setSuggestions(query));
     axios
       .get(
         `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5&appid=${process.env.WEATHER_API_KEY}`
