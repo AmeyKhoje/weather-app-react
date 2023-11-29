@@ -1,6 +1,8 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const DotEnv = require('dotenv-webpack');
+const { ProvidePlugin } = require('webpack');
 
 module.exports = ({ mode } = { mode: 'production' }) => {
   return {
@@ -66,6 +68,12 @@ module.exports = ({ mode } = { mode: 'production' }) => {
         chunks: true,
         filename: 'index.html',
         template: path.resolve(__dirname, 'public', 'index.html'),
+      }),
+      new ProvidePlugin({
+        process: 'process/browser',
+      }),
+      new DotEnv({
+        path: './.env',
       }),
     ],
     optimization: {
